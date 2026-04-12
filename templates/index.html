@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intelli-Credit | AI-Powered Credit Decisioning Engine</title>
+    <meta
+      name="description"
+      content="AI-Powered Credit Decisioning Engine for automated Credit Appraisal Memo generation. By Vivriti Capital × Yuvaan IIT Hyderabad."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <!-- ═══ ANIMATED BACKGROUND ═══ -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="/" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+            <img src="/static/logo.png" alt="Intelli-Credit Logo" class="logo-img" style="height: 40px; margin-right: 12px; border-radius: 8px;" />
+            <div>
+              <h1 class="logo-text"><span style="color: var(--color-success)">Intelli</span>-<span>Credit</span></h1>
+              <p class="logo-sub">AI Credit Decisioning Engine</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <button class="nav-tab active" data-tab="upload" id="nav-upload">
+          Upload
+        </button>
+        <button class="nav-tab" data-tab="analysis" id="nav-analysis">
+          Analysis
+        </button>
+        <button class="nav-tab" data-tab="credit-analysis" id="nav-credit-analysis">
+          Credit Analysis
+        </button>
+        <button class="nav-tab" data-tab="research" id="nav-research">
+          Research
+        </button>
+        <button class="nav-tab" data-tab="scoring" id="nav-scoring">
+          Scoring
+        </button>
+        <button class="nav-tab" data-tab="cam" id="nav-cam">
+          CAM
+        </button>
+      </nav>
+      <div class="header-right">
+        <button class="btn btn-secondary" id="themeToggle" title="Toggle Theme" style="padding: 6px 12px; font-size: 0.85rem;">
+          Toggle Theme
+        </button>
+      </div>
+    </header>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="main-content">
+      <!-- ══ TAB 1: UPLOAD ══ -->
+      <section class="tab-panel active" id="panel-upload">
+        <div class="panel-header">
+          <h2 class="panel-title">Data Ingestion</h2>
+          <p class="panel-subtitle">
+            Upload company documents or use sample data for demo
+          </p>
+        </div>
+
+        <div class="upload-grid">
+          <!-- Upload Zone -->
+          <div class="card glass-card upload-zone-card">
+            <h3 class="card-title">📂 Upload Documents</h3>
+            <div class="upload-zone" id="uploadZone">
+              <div class="upload-icon">
+                <svg viewBox="0 0 64 64" fill="none" width="64" height="64">
+                  <rect
+                    x="8"
+                    y="18"
+                    width="48"
+                    height="38"
+                    rx="6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-dasharray="4 3"
+                  />
+                  <path
+                    d="M32 40V24M24 30l8-8 8 8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <p class="upload-text">
+                Drag & drop files or <span class="upload-browse">browse</span>
+              </p>
+              <p class="upload-hint">
+                PDF, Excel, CSV, DOCX: Annual Reports, GST, Bank Statements, ITR
+              </p>
+              <input
+                type="file"
+                id="fileInput"
+                multiple
+                accept=".pdf,.xlsx,.xls,.csv,.docx,.doc,.txt,.json"
+                hidden
+              />
+            </div>
+            <div class="file-list" id="fileList"></div>
+          </div>
+
+          <!-- Sample Data -->
+          <div class="card glass-card sample-data-card">
+            <h3 class="card-title">Demo Mode: Sample Data</h3>
+            <p class="card-desc">
+              Generate realistic Indian corporate data for testing
+            </p>
+
+            <div class="sample-options">
+              <div class="sample-option healthy" id="sampleHealthy">
+                <h4>Healthy Company</h4>
+                <p>Aravind Industries Pvt Ltd</p>
+                <p class="sample-detail">
+                  Manufacturing • Strong financials • ₹485 Cr revenue
+                </p>
+              </div>
+              <div class="sample-option risky" id="sampleRisky">
+                <h4>Risky Company</h4>
+                <p>Global Impex Trading Co.</p>
+                <p class="sample-detail">
+                  Trading • High leverage • ₹320 Cr revenue • Loss-making
+                </p>
+              </div>
+              <div class="sample-option growth" id="sampleGrowth">
+                <h4>Growth Startup</h4>
+                <p>Nexus Tech</p>
+                <p class="sample-detail">
+                  IT &amp; Software • High growth • ₹150 Cr revenue
+                </p>
+              </div>
+              <div class="sample-option stable" id="sampleStable">
+                <h4>Stable Enterprise</h4>
+                <p>Heritage Retail</p>
+                <p class="sample-detail">
+                  Retail • Low debt • ₹1,250 Cr revenue
+                </p>
+              </div>
+            </div>
+
+            <div class="company-input-group" id="companyInputGroup">
+              <label class="field-label">Company Name</label>
+              <input
+                type="text"
+                class="text-input"
+                id="companyName"
+                placeholder="Enter company name..."
+              />
+              <label class="field-label" style="margin-top: 12px"
+                >Promoter Names (comma-separated)</label
+              >
+              <input
+                type="text"
+                class="text-input"
+                id="promoterNames"
+                placeholder="e.g., Rajesh Sharma, Priya Sharma"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Run Analysis Button -->
+        <div class="action-bar">
+          <button class="btn btn-primary btn-lg" id="btnAnalyze">
+            Run Full Analysis Pipeline
+          </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-section hidden" id="progressSection">
+          <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+          </div>
+          <p class="progress-text" id="progressText">Initializing...</p>
+        </div>
+      </section>
+
+      <!-- ══ TAB 2: ANALYSIS ══ -->
+      <section class="tab-panel" id="panel-analysis">
+        <div class="panel-header">
+          <h2 class="panel-title">Financial Analysis</h2>
+          <p class="panel-subtitle" id="analysisCompanyName">
+            Upload documents to see analysis
+          </p>
+        </div>
+
+        <div class="metrics-grid" id="metricsGrid">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="charts-row">
+          <div class="card glass-card chart-card">
+            <h3 class="card-title">Revenue & Profitability</h3>
+            <canvas id="chartFinancials"></canvas>
+          </div>
+          <div class="card glass-card chart-card">
+            <h3 class="card-title">Cross-Verification Score</h3>
+            <canvas id="chartCrossVerify"></canvas>
+          </div>
+        </div>
+
+        <div class="card glass-card" id="crossVerifyCard">
+          <h3 class="card-title">Cross-Verification Report</h3>
+          <div id="crossVerifyDetails"></div>
+        </div>
+      </section>
+
+      <!-- ══ TAB 2b: CREDIT ANALYSIS ══ -->
+      <section class="tab-panel" id="panel-credit-analysis">
+        <div class="panel-header">
+          <h2 class="panel-title">Structured Credit Analysis</h2>
+          <p class="panel-subtitle" id="creditAnalysisSubtitle">
+            5-Step CAM: Entity Classification → Financial Inputs → Ratios → Scoring → Anomaly Detection
+          </p>
+        </div>
+
+        <!-- Entity Classification -->
+        <div class="card glass-card" id="entityClassCard" style="margin-bottom: 20px;">
+          <h3 class="card-title">Step 1 - Entity Classification</h3>
+          <div id="entityClassContent" style="display: flex; align-items: center; gap: 16px; padding: 12px 0;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Run analysis to classify the entity.</span>
+          </div>
+        </div>
+
+        <!-- Financial Inputs -->
+        <div class="card glass-card" id="financialInputsCard" style="margin-bottom: 20px;">
+          <h3 class="card-title">Step 2 - Core Financial Inputs (INR Crores)</h3>
+          <div style="overflow-x: auto;">
+            <table class="cam-table" id="financialInputsTable" style="width: 100%;">
+              <thead>
+                <tr><th>Metric</th><th>Value</th></tr>
+              </thead>
+              <tbody id="financialInputsBody">
+                <tr><td colspan="2" style="text-align: center; color: var(--text-muted);">Run analysis to see inputs</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Credit Ratios -->
+        <div class="card glass-card" id="creditRatiosCard" style="margin-bottom: 20px;">
+          <h3 class="card-title">Step 3 - Computed Credit Ratios</h3>
+          <div style="overflow-x: auto;">
+            <table class="cam-table" id="creditRatiosTable" style="width: 100%;">
+              <thead>
+                <tr><th>Ratio</th><th>Formula</th><th>Value</th><th>Interpretation</th></tr>
+              </thead>
+              <tbody id="creditRatiosBody">
+                <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Run analysis to compute ratios</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Credit Score -->
+        <div class="card glass-card" id="creditScoreCard" style="margin-bottom: 20px;">
+          <h3 class="card-title">Step 4 - Weighted Credit Score</h3>
+          <div id="creditScoreContent" style="text-align: center; padding: 24px 0;">
+            <div id="creditScoreGauge" style="font-size: 4rem; font-weight: 800; color: var(--text-muted);">--</div>
+            <div id="creditScoreRating" style="font-size: 1.5rem; margin-top: 8px; color: var(--text-muted);">Run analysis</div>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="cam-table" id="creditScoreBreakdown" style="width: 100%;">
+              <thead>
+                <tr><th>Factor</th><th>Weight</th><th>Raw Value</th><th>Component Score</th><th>Weighted</th></tr>
+              </thead>
+              <tbody id="creditScoreBody">
+                <tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No data yet</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Anomaly Flags -->
+        <div class="card glass-card" id="anomalyFlagsCard" style="border-color: rgba(239, 68, 68, 0.3);">
+          <h3 class="card-title" style="color: var(--color-danger);">Step 5 - Anomaly / Risk Flags</h3>
+          <div id="anomalyFlagsContent">
+            <p style="color: var(--text-muted); padding: 12px 0;">Run analysis to detect anomalies.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ TAB 3: RESEARCH ══ -->
+      <section class="tab-panel" id="panel-research">
+        <div
+          class="panel-header"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+          "
+        >
+          <div>
+            <h2 class="panel-title">Secondary Research</h2>
+            <p class="panel-subtitle">
+              Web intelligence: News, Legal, MCA, Sector, Regulatory
+            </p>
+          </div>
+          <button
+            class="btn btn-secondary"
+            id="btnRunWebScan"
+            onclick="
+              alert('Initiating Web Intelligence Scan... (Mock trigger)')
+            "
+            style="border-color: var(--color-info); color: var(--color-info)"
+          >
+            Run Web Intelligence Scan
+          </button>
+        </div>
+
+        <div class="research-stats" id="researchStats"></div>
+
+        <!-- MCA Data Panel -->
+        <div id="mcaFeed" style="display: none; margin-bottom: 20px"></div>
+
+        <div class="research-grid">
+          <div class="card glass-card">
+            <h3 class="card-title">News & Media</h3>
+            <div class="research-feed" id="newsFeed"></div>
+          </div>
+          <div class="card glass-card">
+            <h3 class="card-title">Legal & Litigation</h3>
+            <div class="research-feed" id="legalFeed"></div>
+          </div>
+          <div class="card glass-card">
+            <h3 class="card-title">Regulatory & Sector</h3>
+            <div class="research-feed" id="sectorFeed"></div>
+          </div>
+        </div>
+
+        <div class="card glass-card sentiment-card">
+          <h3 class="card-title">NLP Sentiment & Risk Analysis</h3>
+          <div class="sentiment-grid" id="sentimentGrid"></div>
+        </div>
+
+        <!-- Data Sources Footer -->
+        <div
+          style="
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-align: center;
+          "
+        >
+          <strong>Verified Intelligence Sources:</strong> Google News • Ministry
+          of Corporate Affairs (MCA) • RBI / SEBI Directives • Industry Reports
+          (Gartner, IBEF)
+        </div>
+      </section>
+
+      <!-- ══ TAB 4: SCORING ══ -->
+      <section class="tab-panel" id="panel-scoring">
+        <div class="panel-header">
+          <h2 class="panel-title">Credit Scoring</h2>
+          <p class="panel-subtitle">Five Cs Assessment + ML Risk Prediction</p>
+        </div>
+
+        <div class="scoring-hero" id="scoringHero">
+          <!-- Big score display -->
+        </div>
+
+        <div class="charts-row">
+          <div class="card glass-card chart-card">
+            <h3 class="card-title">Five Cs Radar</h3>
+            <canvas id="chartRadar"></canvas>
+          </div>
+          <div class="card glass-card chart-card">
+            <h3 class="card-title">ML Feature Importance</h3>
+            <canvas id="chartShap"></canvas>
+          </div>
+        </div>
+
+        <div
+          class="card glass-card ews-card"
+          style="border-color: rgba(239, 68, 68, 0.3)"
+        >
+          <h3 class="card-title" style="color: var(--color-danger)">
+            Early Warning Signals
+          </h3>
+          <div id="ewsFeed"></div>
+        </div>
+
+        <div class="five-cs-details" id="fiveCsDetails"></div>
+
+        <!-- Qualitative Input -->
+        <div class="card glass-card qual-card">
+          <h3 class="card-title">Credit Officer: Qualitative Input</h3>
+          <p class="card-desc">
+            Enter observations from site visits, management meetings, or market
+            feedback
+          </p>
+          <div class="qual-form">
+            <select class="text-input" id="qualCategory">
+              <option value="factory_visit">Factory/Site Visit</option>
+              <option value="management_meeting">Management Meeting</option>
+              <option value="site_inspection">Site Inspection</option>
+              <option value="market_feedback">Market Feedback</option>
+              <option value="employee_interaction">Employee Interaction</option>
+              <option value="general_observation">General Observation</option>
+            </select>
+            <input
+              type="text"
+              class="text-input"
+              id="qualOfficer"
+              placeholder="Officer Name"
+            />
+            <textarea
+              class="text-input textarea"
+              id="qualNotes"
+              rows="4"
+              placeholder="Enter your observations...&#10;e.g., Factory operating at 80% capacity, well-maintained equipment, motivated workforce."
+            ></textarea>
+            <button class="btn btn-primary" id="btnQualSubmit">
+              Submit & Adjust Score
+            </button>
+          </div>
+          <div class="qual-result hidden" id="qualResult"></div>
+        </div>
+      </section>
+
+      <!-- ══ TAB 5: CAM ══ -->
+      <section class="tab-panel" id="panel-cam">
+        <div class="panel-header">
+          <h2 class="panel-title">Credit Appraisal Memo</h2>
+          <p class="panel-subtitle">
+            Generate and download professional CAM document
+          </p>
+        </div>
+
+        <div class="cam-preview-card card glass-card" id="camPreview">
+          <div class="cam-header-preview">
+            <h2 class="cam-title-preview">CREDIT APPRAISAL MEMORANDUM</h2>
+            <p class="cam-company-preview" id="camCompanyName">-</p>
+            <p class="cam-date-preview" id="camDate"></p>
+          </div>
+
+          <div class="cam-sections" id="camSections">
+            <div class="cam-section">
+              <h3>Executive Summary</h3>
+              <p id="camExecSummary">
+                Run the analysis pipeline to generate the CAM.
+              </p>
+            </div>
+            <div class="cam-section">
+              <h3>Recommendation</h3>
+              <div id="camRecommendation" class="cam-recommendation"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cam-actions">
+          <button class="btn btn-primary btn-lg" id="btnGenWord">
+            Generate Word Document
+          </button>
+          <button class="btn btn-secondary btn-lg" id="btnGenPdf">
+            Generate PDF Document
+          </button>
+        </div>
+
+        <div class="cam-download hidden" id="camDownload">
+          <div class="card glass-card download-card">
+            <p class="download-text">CAM generated successfully!</p>
+            <a class="btn btn-primary" id="camDownloadLink" href="#" download>
+              Download CAM
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <p>Intelli-Credit AI Engine | Developed by <strong>Team SPB</strong></p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
