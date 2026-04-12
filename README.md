@@ -1,6 +1,6 @@
-# IntelliCredit — AI-Powered Credit Analysis Pipeline for Indian MSMEs
+# IntelliCredit - AI-Powered Credit Analysis Pipeline for Indian MSMEs
 
-> Built for the IIT Hyderabad National AI/ML Hackathon 2026 — Top 10 Finish out of 7,700+ participants
+> Built for the IIT Hyderabad National AI/ML Hackathon 2026 - Top 10 Finish out of 7,700+ participants
 
 ## Overview
 IntelliCredit is an end-to-end credit analysis pipeline that reads raw financial documents (Annual Reports, Bank Statements, GST Filings) uploaded by Indian MSMEs and NBFCs, extracts key financial metrics, and generates a structured credit health dashboard.
@@ -33,10 +33,10 @@ intellicredit/
 ## Tech Stack
 - Python 3.10+
 - pdfplumber, PyMuPDF (fitz), pytesseract — PDF parsing
-- pandas — structured data handling
-- Anthropic Claude API — AI-powered extraction
-- XGBoost + SHAP — credit scoring and explainability
-- Pillow — OCR image preprocessing
+- pandas - structured data handling
+- Anthropic Claude API - AI-powered extraction
+- XGBoost + SHAP - credit scoring and explainability
+- Pillow - OCR image preprocessing
 
 ## Setup
 
@@ -86,4 +86,9 @@ python app.py
 Built by Team SPB for the IIT Hyderabad National AI/ML Hackathon, March 2026.
 
 ## License
-MIT License
+
+MIT License — Copyright (c) 2026 Harsh Apurva, Aditya Sharma, Aditya Bakhale
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software to use, copy, modify, merge, publish, distribute, and/or sublicense it, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the software.
