@@ -83,6 +83,12 @@ python app.py
 6. Dashboard displays: Revenue, PAT, EBITDA, Net Worth, Total Debt, D/E Ratio, DSCR
 
 ## Team
+
+| Name | GitHub |
+|---|---|
+| Harsh Apurva | [@HarshApurva](https://github.com/HarshApurva) |
+| Aditya Sharma | [@Aditya-00-9](https://github.com/Aditya-00-9) |
+| Aditya Bakhale | [@username](https://github.com/username) |
 Built by Team SPB for the IIT Hyderabad National AI/ML Hackathon, March 2026.
 
 ## License
