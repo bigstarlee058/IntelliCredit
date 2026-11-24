@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node init && vite",
-    "build": "node init && tsc && vite build",
-    "build:landing": "node init && vite build"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:landing": "vite build"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.0.0",
